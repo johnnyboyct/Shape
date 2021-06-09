@@ -1,6 +1,6 @@
 /**
  *
- * Tests for Shape
+ * Tests for Ellipse
  *
  * @see https://github.com/react-boilerplate/react-boilerplate/tree/master/docs/testing
  *
@@ -8,14 +8,20 @@
 
 import React from 'react';
 import { render } from 'react-testing-library';
+import { IntlProvider } from 'react-intl';
 // import 'jest-dom/extend-expect'; // add some helpful assertions
 
-import Shape from '../index';
+import Ellipse from '../index';
+import { DEFAULT_LOCALE } from '../../../i18n';
 
-describe('<Shape />', () => {
+describe('<Ellipse />', () => {
   it('Expect to not log errors in console', () => {
     const spy = jest.spyOn(global.console, 'error');
-    render(<Shape />);
+    render(
+      <IntlProvider locale={DEFAULT_LOCALE}>
+        <Ellipse />
+      </IntlProvider>,
+    );
     expect(spy).not.toHaveBeenCalled();
   });
 
@@ -31,7 +37,11 @@ describe('<Shape />', () => {
   it.skip('Should render and match the snapshot', () => {
     const {
       container: { firstChild },
-    } = render(<Shape />);
+    } = render(
+      <IntlProvider locale={DEFAULT_LOCALE}>
+        <Ellipse />
+      </IntlProvider>,
+    );
     expect(firstChild).toMatchSnapshot();
   });
 });

@@ -11,8 +11,8 @@ import '@babel/polyfill';
 // Import all the third party stuff
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'connected-react-router';
+import { Provider, dispatch } from 'react-redux';
+import { ConnectedRouter, push } from 'connected-react-router';
 import history from 'utils/history';
 import 'sanitize.css/sanitize.css';
 
@@ -37,6 +37,8 @@ import { translationMessages } from './i18n';
 const initialState = {};
 const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app');
+
+store.dispatch(push('/api/shapes'));
 
 const render = messages => {
   ReactDOM.render(
